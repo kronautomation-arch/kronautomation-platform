@@ -11,10 +11,10 @@
  */
 
 // ════════════════════════════════════════════════════
-// CONFIG — pegar credenciales de Supabase aquí
+// CONFIG — Kronautomation Supabase
 // ════════════════════════════════════════════════════
-const SUPABASE_URL      = 'https://YOUR_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+const SUPABASE_URL      = 'https://xfblbceaewcyeegjrylf.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_KZxKiCjJE_H1vTTRDIx5YQ_Y8p1X4sg';
 
 // ════════════════════════════════════════════════════
 // Cliente Supabase
