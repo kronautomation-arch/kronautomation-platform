@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080c18" />
+  <meta name="description" content="Kronautomation — Automatización inteligente para marcas. Dashboards en tiempo real, IA aplicada a marketing, growth y operaciones." />
+  <title>Kronautomation — Automatización inteligente para marcas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237c3aed'/%3E%3Ctext x='50' y='68' font-family='-apple-system,sans-serif' font-size='62' font-weight='900' text-anchor='middle' fill='white'%3EK%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #080c18;
+      --bg2: #0d1120;
+      --glass: rgba(255,255,255,0.04);
+      --glass2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --p1: #7c3aed; --p2: #a855f7;
+      --b1: #1d4ed8; --b2: #60a5fa;
+      --g1: #059669; --g2: #34d399;
+      --r1: #be123c; --r2: #fb7185;
+      --a1: #d97706; --a2: #fbbf24;
+      --c1: #0891b2; --c2: #67e8f9;
+      --txt: #f1f5f9;
+      --txt2: #94a3b8;
+      --txt3: #475569;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: -apple-system,'SF Pro Display',BlinkMacSystemFont,'Segoe UI',sans-serif;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: calc(var(--safe-top) + 60px) 24px 80px;
+      text-align: center;
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,.30) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(29,78,216,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 50%, rgba(168,85,247,.14) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0e1f 0%, var(--bg) 100%);
+      z-index:0;
+    }
+    .hero-orb {
+      position:absolute; border-radius:50%; pointer-events:none; z-index:0;
+      filter: blur(40px);
+    }
+    .hero-orb.a { width:400px; height:400px; background:rgba(124,58,237,.15); top:-150px; right:-100px; }
+    .hero-orb.b { width:280px; height:280px; background:rgba(29,78,216,.13); bottom:-100px; left:-80px; }
+
+    .hero-inner { position:relative; z-index:1; max-width:980px; margin:0 auto; }
+
+    .hero-logo {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 16px; border-radius:99px;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border2);
+      backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+      margin-bottom:34px;
+    }
+    .hero-logo-mark {
+      width:26px; height:26px; border-radius:8px;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; font-weight:900; color:#fff; letter-spacing:-1px;
+      box-shadow:0 4px 14px rgba(124,58,237,.5);
+    }
+    .hero-logo-txt {
+      font-size:13px; font-weight:700; letter-spacing:.5px;
+      color:var(--txt);
+    }
+    .hero-logo-tag {
+      font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px;
+      background:rgba(52,211,153,.14); color:var(--g2);
+      border:1px solid rgba(52,211,153,.25);
+      letter-spacing:.5px; text-transform:uppercase;
+    }
+
+    .hero h1 {
+      font-size:clamp(40px, 7vw, 72px);
+      font-weight:900; letter-spacing:-2.5px; line-height:1.02;
+      margin-bottom:22px;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 60%, #a855f7 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero h1 em {
+      font-style:normal;
+      background: linear-gradient(135deg, var(--p2) 0%, var(--b2) 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero p {
+      font-size:clamp(15px, 2vw, 19px); color:var(--txt2);
+      line-height:1.6; max-width:640px; margin:0 auto 38px;
+      font-weight:500;
+    }
+
+    .hero-stats {
+      display:flex; gap:32px; justify-content:center; flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .hero-stat-val {
+      font-size:28px; font-weight:900; color:var(--txt); letter-spacing:-1px;
+      background: linear-gradient(135deg, var(--p2), var(--b2));
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero-stat-lbl { font-size:11px; color:var(--txt3); font-weight:600; letter-spacing:.6px; text-transform:uppercase; margin-top:2px; }
+
+    /* ─── PROJECTS GRID ─── */
+    .section {
+      max-width:1200px; margin:0 auto;
+      padding: 30px 24px 60px;
+    }
+    .section-hdr {
+      display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:30px; gap:16px; flex-wrap:wrap;
+    }
+    .section-eyebrow {
+      font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--p2); margin-bottom:6px;
+    }
+    .section-title {
+      font-size:clamp(26px, 4vw, 36px); font-weight:800; letter-spacing:-1px; color:var(--txt);
+    }
+    .section-sub {
+      font-size:14px; color:var(--txt2); margin-top:6px;
+    }
+
+    .grid {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr));
+      gap:18px;
+    }
+
+    .card {
+      position:relative; overflow:hidden;
+      background: var(--glass);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:26px;
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+      text-decoration:none; color:inherit;
+      display:flex; flex-direction:column;
+      min-height:240px;
+    }
+    .card:hover {
+      transform:translateY(-3px);
+      background: var(--glass2);
+      border-color: var(--border2);
+      box-shadow: 0 18px 40px rgba(0,0,0,.5);
+    }
+    .card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      border-radius:22px 22px 0 0;
+      opacity:0; transition:opacity .25s;
+    }
+    .card:hover::before { opacity:1; }
+    .card.cp::before { background:linear-gradient(90deg, var(--p1), var(--p2)); }
+    .card.cb::before { background:linear-gradient(90deg, var(--b1), var(--b2)); }
+    .card.cg::before { background:linear-gradient(90deg, var(--g1), var(--g2)); }
+    .card.ca::before { background:linear-gradient(90deg, var(--a1), var(--a2)); }
+    .card.cc::before { background:linear-gradient(90deg, var(--c1), var(--c2)); }
+    .card.cr::before { background:linear-gradient(90deg, var(--r1), var(--r2)); }
+
+    .card-top {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:18px;
+    }
+    .card-icon {
+      width:48px; height:48px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px;
+    }
+    .card.cp .card-icon { background:linear-gradient(135deg, var(--p1), var(--p2)); box-shadow:0 6px 18px rgba(124,58,237,.4); }
+    .card.cb .card-icon { background:linear-gradient(135deg, var(--b1), var(--b2)); box-shadow:0 6px 18px rgba(29,78,216,.4); }
+    .card.cg .card-icon { background:linear-gradient(135deg, var(--g1), var(--g2)); box-shadow:0 6px 18px rgba(5,150,105,.4); }
+    .card.ca .card-icon { background:linear-gradient(135deg, var(--a1), var(--a2)); box-shadow:0 6px 18px rgba(217,119,6,.4); }
+    .card.cc .card-icon { background:linear-gradient(135deg, var(--c1), var(--c2)); box-shadow:0 6px 18px rgba(8,145,178,.4); }
+    .card.cr .card-icon { background:linear-gradient(135deg, var(--r1), var(--r2)); box-shadow:0 6px 18px rgba(190,18,60,.4); }
+
+    .card-status {
+      display:flex; align-items:center; gap:5px;
+      padding:5px 10px; border-radius:99px;
+      font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+    }
+    .status-live {
+      background: rgba(52,211,153,.14); color: var(--g2);
+      border:1px solid rgba(52,211,153,.3);
+    }
+    .status-soon {
+      background: rgba(217,119,6,.14); color: var(--a2);
+      border:1px solid rgba(217,119,6,.3);
+    }
+    .status-locked {
+      background: rgba(255,255,255,.05); color: var(--txt3);
+      border:1px solid var(--border);
+    }
+    .status-dot {
+      width:6px; height:6px; border-radius:50%; background:currentColor;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; }
+      50% { opacity:.4; }
+    }
+
+    .card-tag {
+      font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase;
+      color:var(--txt3); margin-bottom:8px;
+    }
+    .card-title { font-size:22px; font-weight:800; letter-spacing:-.6px; color:var(--txt); margin-bottom:8px; line-height:1.15; }
+    .card-desc { font-size:13px; color:var(--txt2); line-height:1.55; flex:1; }
+
+    .card-foot {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:20px; padding-top:18px;
+      border-top:1px solid var(--border);
+    }
+    .card-stack {
+      display:flex; gap:6px; flex-wrap:wrap;
+    }
+    .card-pill {
+      font-size:10px; font-weight:600; padding:4px 9px; border-radius:6px;
+      background:rgba(255,255,255,.05); color:var(--txt2);
+      border:1px solid var(--border);
+    }
+    .card-arrow {
+      width:32px; height:32px; border-radius:10px;
+      background:rgba(255,255,255,.05);
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; color:var(--txt2);
+      transition:all .25s;
+    }
+    .card:hover .card-arrow {
+      background: var(--p1); color:#fff; transform:translateX(2px);
+    }
+    .card.cb:hover .card-arrow { background: var(--b1); }
+    .card.cg:hover .card-arrow { background: var(--g1); }
+    .card.ca:hover .card-arrow { background: var(--a1); }
+    .card.cc:hover .card-arrow { background: var(--c1); }
+    .card.cr:hover .card-arrow { background: var(--r1); }
+
+    /* ─── CTA STRIP ─── */
+    .cta {
+      max-width:1200px; margin:30px auto 0; padding:0 24px;
+    }
+    .cta-card {
+      position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(124,58,237,.18) 0%, rgba(29,78,216,.10) 100%);
+      border:1px solid rgba(124,58,237,.3);
+      border-radius:24px; padding:44px 36px;
+      text-align:center;
+      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    }
+    .cta-card::after {
+      content:''; position:absolute;
+      top:-80px; right:-60px; width:240px; height:240px; border-radius:50%;
+      background: radial-gradient(circle, rgba(168,85,247,.22) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .cta-eyebrow {
+      font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--p2); margin-bottom:10px; position:relative;
+    }
+    .cta-title {
+      font-size:clamp(24px, 4vw, 34px); font-weight:800; letter-spacing:-1px;
+      color:var(--txt); margin-bottom:14px; position:relative;
+    }
+    .cta-sub { font-size:14px; color:var(--txt2); margin-bottom:24px; position:relative; max-width:520px; margin-left:auto; margin-right:auto; }
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:14px 28px; border-radius:12px;
+      background:#fff; color:#0a0e1f;
+      font-size:14px; font-weight:700; letter-spacing:-.2px;
+      text-decoration:none; position:relative;
+      transition: all .2s;
+      box-shadow: 0 8px 24px rgba(255,255,255,.15);
+    }
+    .cta-btn:hover { transform:translateY(-1px); box-shadow:0 12px 32px rgba(255,255,255,.25); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      max-width:1200px; margin:60px auto 0; padding: 40px 24px calc(40px + var(--safe-bottom));
+      border-top:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:18px;
+    }
+    .ft-brand {
+      display:flex; align-items:center; gap:10px;
+      font-size:13px; color:var(--txt2);
+    }
+    .ft-brand-mark {
+      width:24px; height:24px; border-radius:7px;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:900; color:#fff;
+    }
+    .ft-links { display:flex; gap:18px; }
+    .ft-links a {
+      font-size:12px; color:var(--txt2); text-decoration:none;
+      transition:color .2s;
+    }
+    .ft-links a:hover { color:var(--txt); }
+    .ft-copy {
+      width:100%; text-align:center;
+      font-size:11px; color:var(--txt3); margin-top:18px;
+    }
+
+    @media (max-width:600px) {
+      .hero { padding: calc(var(--safe-top) + 36px) 18px 56px; }
+      .section { padding: 20px 18px 40px; }
+      .grid { grid-template-columns:1fr; gap:14px; }
+      .card { padding:22px; min-height:auto; }
+      .cta { padding: 0 18px; }
+      .cta-card { padding:32px 22px; }
+      footer { padding: 30px 18px calc(30px + var(--safe-bottom)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-orb a"></div>
+    <div class="hero-orb b"></div>
+
+    <div class="hero-inner">
+      <div class="hero-logo">
+        <div class="hero-logo-mark">K</div>
+        <div class="hero-logo-txt">Kronautomation</div>
+        <div class="hero-logo-tag">● Live</div>
+      </div>
+
+      <h1>Automatización <em>inteligente</em><br/>para marcas que crecen.</h1>
+
+      <p>Dashboards en tiempo real, IA aplicada a marketing y operaciones automatizadas. Una plataforma única para ver y operar tus marcas.</p>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">5+</div>
+          <div class="hero-stat-lbl">Clientes activos</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">24/7</div>
+          <div class="hero-stat-lbl">Datos en vivo</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">100%</div>
+          <div class="hero-stat-lbl">Automatizado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section class="section">
+    <div class="section-hdr">
+      <div>
+        <div class="section-eyebrow">📊 Proyectos en producción</div>
+        <div class="section-title">Dashboards & herramientas</div>
+        <div class="section-sub">Acceso privado por cliente. Cada subdominio es independiente.</div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- Dr. Bareño -->
+      <a class="card cp" href="https://bareno.kronautomation.co">
+        <div class="card-top">
+          <div class="card-icon">🏥</div>
+          <div class="card-status status-live"><span class="status-dot"></span>En vivo</div>
+        </div>
+        <div class="card-tag">Salud · Oftalmología</div>
+        <div class="card-title">Dr. John Bareño</div>
+        <div class="card-desc">Dashboard PWA de la clínica oftalmológica + congreso FaceTech. Meta Ads, citas, procedimientos y posicionamiento de marca en tiempo real.</div>
+        <div class="card-foot">
+          <div class="card-stack">
+            <span class="card-pill">Meta Ads</span>
+            <span class="card-pill">Sheets</span>
+            <span class="card-pill">PWA</span>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+
+      <!-- Marfil -->
+      <a class="card cb" href="https://marfil.kronautomation.co">
+        <div class="card-top">
+          <div class="card-icon">👓</div>
+          <div class="card-status status-live"><span class="status-dot"></span>En vivo</div>
+        </div>
+        <div class="card-tag">Retail · Lentes</div>
+        <div class="card-title">Marfil</div>
+        <div class="card-desc">Dashboard ejecutivo de la marca de lentes. Envíos, ventas, rendimiento de Meta Ads y contenido SEO automatizado.</div>
+        <div class="card-foot">
+          <div class="card-stack">
+            <span class="card-pill">envia.com</span>
+            <span class="card-pill">Meta Ads</span>
+            <span class="card-pill">SEO</span>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+
+      <!-- Research -->
+      <a class="card cc" href="https://research.kronautomation.co">
+        <div class="card-top">
+          <div class="card-icon">🧪</div>
+          <div class="card-status status-soon"><span class="status-dot"></span>Próximamente</div>
+        </div>
+        <div class="card-tag">IA · Content Lab</div>
+        <div class="card-title">Research Lab</div>
+        <div class="card-desc">Generación de contenido visual con gpt-image-2, ads para FORZA Hair Tonic, prompts curados y experimentos creativos.</div>
+        <div class="card-foot">
+          <div class="card-stack">
+            <span class="card-pill">gpt-image-2</span>
+            <span class="card-pill">Prompts</span>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+
+      <!-- SEO -->
+      <a class="card cg" href="https://seo.kronautomation.co">
+        <div class="card-top">
+          <div class="card-icon">🔍</div>
+          <div class="card-status status-soon"><span class="status-dot"></span>Próximamente</div>
+        </div>
+        <div class="card-tag">SEO · Keywords</div>
+        <div class="card-title">SEO Toolkit</div>
+        <div class="card-desc">Análisis de keywords, monitoreo de posiciones y generación automática de artículos para blogs de cliente.</div>
+        <div class="card-foot">
+          <div class="card-stack">
+            <span class="card-pill">Keywords</span>
+            <span class="card-pill">Auto-blog</span>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta">
+    <div class="cta-card">
+      <div class="cta-eyebrow">¿Tu marca aquí?</div>
+      <div class="cta-title">Construyamos algo juntos.</div>
+      <div class="cta-sub">Dashboards a medida, automatización con IA y operaciones que escalan sin agregar headcount.</div>
+      <a class="cta-btn" href="mailto:kronautomation@gmail.com">
+        Hablar con el equipo →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="ft-brand">
+      <div class="ft-brand-mark">K</div>
+      <span>Kronautomation · 2026</span>
+    </div>
+    <div class="ft-links">
+      <a href="mailto:kronautomation@gmail.com">Contacto</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+    </div>
+    <div class="ft-copy">Hecho con ☕ y código en Colombia</div>
+  </footer>
+
+</body>
+</html>
