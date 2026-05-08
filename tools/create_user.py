@@ -14,7 +14,7 @@ Ejemplos:
     # Con rol admin
     python tools/create_user.py owner@kronautomation.com bareno "Pass123!" admin
 
-Proyectos válidos: bareno, marfil, research, seo
+Proyectos válidos: bareno, marfil, youarenotalone, research, seo
 Roles válidos: viewer, admin
 """
 import os
@@ -42,7 +42,7 @@ if not URL or not SECRET:
     print(f"Buscando .env en: {ROOT / '.env'}")
     sys.exit(1)
 
-VALID_PROJECTS = {"bareno", "marfil", "research", "seo"}
+VALID_PROJECTS = {"bareno", "marfil", "youarenotalone", "research", "seo"}
 VALID_ROLES    = {"viewer", "admin"}
 
 
